@@ -11,8 +11,11 @@ import Contact from './ContactComponent';
 import { COMMENTS } from '../shared/comments';
 import { PROMOTIONS } from '../shared/promotions';
 import { LEADERS } from '../shared/leaders';
-
-
+import store from '../shared/store';
+import { Provider } from "react-redux";
+import Counter from "./Counter";
+import { connect } from 'react-redux';
+import { Switch, Redirect, withRouter } from 'react-router-dom'
 class Main extends Component {
 
   constructor(props) {
@@ -51,9 +54,14 @@ class Main extends Component {
       );
     };
 
+    
+    
     return (
       <div>
         <Header />
+        
+          <Counter></Counter>
+        
         <Routes>
           <Route path='/home' Component={HomePage} />
           <Route exact path='/menu' element={<Menu dishes = {this.state.dishes} onClick={(dishId)=> this.onDishSelect(dishId)}/>} />
@@ -70,5 +78,13 @@ class Main extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    dishes: state.dishes,
+    comments: state.comments,
+    promotions: state.promotions,
+    leaders: state.leaders
+  }
+}
 
-export default Main;
+export default connect(mapStateToProps)(Main);
