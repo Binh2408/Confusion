@@ -16,6 +16,14 @@ import { Provider } from "react-redux";
 import Counter from "./Counter";
 import { connect } from 'react-redux';
 import { Switch, Redirect, withRouter } from 'react-router-dom'
+const mapStateToProps = state => ({
+  
+    dishes: state.dishes,
+    comments: state.comments,
+    promotions: state.promotions,
+    leaders: state.leaders
+  }
+);
 class Main extends Component {
 
   constructor(props) {
@@ -59,9 +67,9 @@ class Main extends Component {
     return (
       <div>
         <Header />
-        
-          <Counter></Counter>
-        
+        {/* <Provider store={store}> */}
+          <Counter/>
+          {/* </Provider> */}
         <Routes>
           <Route path='/home' Component={HomePage} />
           <Route exact path='/menu' element={<Menu dishes = {this.state.dishes} onClick={(dishId)=> this.onDishSelect(dishId)}/>} />
@@ -78,13 +86,8 @@ class Main extends Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    dishes: state.dishes,
-    comments: state.comments,
-    promotions: state.promotions,
-    leaders: state.leaders
-  }
-}
 
-export default connect(mapStateToProps)(Main);
+
+
+
+export default (connect(mapStateToProps)(Main));

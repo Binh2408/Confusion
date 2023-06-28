@@ -1,10 +1,7 @@
-import { createStore } from "redux";
-
+import { createStore } from 'redux';
+import { combineForms } from 'react-redux-form'
 const initialState = {
   count: 0,
-  firstName: '',
-  lastName: '',
-  email: ''
 };
 
 function reducer(state = initialState, action) {
@@ -27,6 +24,8 @@ function reducer(state = initialState, action) {
       return state;
   }
 }
+
+
 
 const store = createStore(reducer);
 
