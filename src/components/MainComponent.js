@@ -28,13 +28,7 @@ class Main extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      dishes: DISHES,
-      comments: COMMENTS,
-      promotions: PROMOTIONS,
-      leaders: LEADERS
 
-    };
   }
 
   onDishSelect(dishId) {
@@ -45,9 +39,9 @@ class Main extends Component {
     const HomePage = () => {
       return (
         <Home
-        dish={this.state.dishes.filter((dish) => dish.featured)[0]}
-        promotion={this.state.promotions.filter((promo) => promo.featured)[0]}
-        leader={this.state.leaders.filter((leader) => leader.featured)[0]}
+        dish={this.props.dishes.filter((dish) => dish.featured)[0]}
+        promotion={this.props.promotions.filter((promo) => promo.featured)[0]}
+        leader={this.props.leaders.filter((leader) => leader.featured)[0]}
 
         />
       );
@@ -57,8 +51,8 @@ class Main extends Component {
     const DishWithId = () => {
       const { dishId } = useParams();
       return(
-          <DishDetail dish={this.state.dishes.filter((dish) => dish.id === parseInt(dishId,10))[0]} 
-            comments={this.state.comments.filter((comment) => comment.dishId === parseInt(dishId,10))} />
+          <DishDetail dish={this.props.dishes.filter((dish) => dish.id === parseInt(dishId,10))[0]} 
+            comments={this.props.comments.filter((comment) => comment.dishId === parseInt(dishId,10))} />
       );
     };
 
@@ -72,7 +66,7 @@ class Main extends Component {
           {/* </Provider> */}
         <Routes>
           <Route path='/home' Component={HomePage} />
-          <Route exact path='/menu' element={<Menu dishes = {this.state.dishes} onClick={(dishId)=> this.onDishSelect(dishId)}/>} />
+          <Route exact path='/menu' element={<Menu dishes = {this.props.dishes} onClick={(dishId)=> this.onDishSelect(dishId)}/>} />
           <Route path="/home" element={<Navigate to="/Menu"/>}/>
           <Route exact path='/contactus' Component={Contact}  />
           <Route path='/menu/:dishId' Component={DishWithId} />
@@ -80,7 +74,7 @@ class Main extends Component {
 
 
         {/* <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} /> */}
-        <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} />
+        <DishDetail dish={this.props.dishes.filter((dish) => dish.id === this.props.selectedDish)[0]} />
         <Footer />
       </div>
     );
