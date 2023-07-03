@@ -9,16 +9,13 @@ import Contact from './ContactComponent';
 import Counter from "./Counter";
 import { connect } from 'react-redux';
 import { addComment, fetchDishes } from '../redux/ActionCreators';
-import { COMMENTS } from "../shared/comments";
-import { PROMOTIONS } from "../shared/promotions";
-import { LEADERS } from "../shared/leaders";
-import { DISHES } from "../shared/dishes";
-
 import store from "../shared/store"
+import { actions } from 'react-redux-form';
 const mapDispatchToProps = (dispatch) => ({
 
   addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
-  fetchDishes: () => { dispatch(fetchDishes()) }
+  fetchDishes: () => { dispatch(fetchDishes()) },
+  resetFeedbackForm: () => { dispatch(actions.reset('feedback'))}
 });
 
 const mapStateToProps = (state) => ({
@@ -79,10 +76,11 @@ class Main extends Component {
         <Counter />
          </Provider>  */}
         <Routes>
-          <Route path='/home' Component={HomePage} />        
+          <Route path='/home' Component={HomePage} />       
+          <Route exact path='/contactus' Component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} /> 
           <Route exact path='/menu' Component={() => <Menu dishes={this.props.dishes} />} />
           <Route path='/menu/:dishId' Component={DishWithId} />
-          <Route exact path='/contactus' Component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
+          
         </Routes>
 
 
