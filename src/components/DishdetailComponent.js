@@ -55,9 +55,11 @@ function RenderComments({ comments, postComment, dishId }) {
   return (
     <div>
       <h4> Comments </h4>
-      <ul className="list-unstyled">{showcmnts}</ul>
+      <ul className="list-unstyled">{showcmnts}
+        <CommentForm dishId={dishId} postComment={postComment} />
+      </ul>
       {/* <CommentForm dishId={dishId} addComment={addComment} /> */}
-      <CommentForm dishId={dishId} postComment={postComment} />
+
     </div>
   );
 }

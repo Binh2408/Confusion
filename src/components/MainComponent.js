@@ -12,8 +12,8 @@ import { connect } from 'react-redux';
 import store from "../shared/store"
 import { actions } from 'react-redux-form';
 import { postComment, fetchDishes, fetchComments, fetchPromos, addComment } from '../redux/ActionCreators';
-const mapDispatchToProps = (dispatch) => ({
 
+const mapDispatchToProps = (dispatch) => ({
   addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
   fetchDishes: () => { dispatch(fetchDishes()) },
   resetFeedbackForm: () => { dispatch(actions.reset('feedback')) },

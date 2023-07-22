@@ -241,6 +241,54 @@
       "comment": "aaaa",
       "date": "2023-07-22T04:21:22.314Z",
       "id": 24
+    },
+    {
+      "dishId": 1,
+      "rating": "3",
+      "author": "aaaa",
+      "comment": "vvvv",
+      "date": "2023-07-22T06:38:58.233Z",
+      "id": 25
+    },
+    {
+      "dishId": 0,
+      "rating": "3",
+      "author": "kiemtra",
+      "comment": "aaaa",
+      "date": "2023-07-22T06:42:39.325Z",
+      "id": 26
+    },
+    {
+      "dishId": 0,
+      "rating": "2",
+      "author": "kiemtra123",
+      "comment": "123",
+      "date": "2023-07-22T06:44:04.086Z",
+      "id": 27
+    },
+    {
+      "dishId": 0,
+      "rating": "2",
+      "author": "kiemtra123",
+      "comment": "1111",
+      "date": "2023-07-22T06:44:18.282Z",
+      "id": 28
+    },
+    {
+      "dishId": 2,
+      "rating": "5",
+      "author": "kiemtra123",
+      "comment": "123",
+      "date": "2023-07-22T06:44:40.495Z",
+      "id": 29
+    },
+    {
+      "dishId": 2,
+      "rating": "1",
+      "author": "alo 123",
+      "comment": "Alo 123\n",
+      "date": "2023-07-22T06:56:53.867Z",
+      "id": 30
     }
   ],
   "promotions": [
