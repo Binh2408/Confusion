@@ -11,6 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import CommentForm from "./CommentForm";
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 function RenderDish({ dish }) {
   if (dish == null) {
     return <div></div>;
@@ -18,7 +19,8 @@ function RenderDish({ dish }) {
   return (
     <div>
       <Card>
-        <CardImg width="100%" src={dish.image} alt={dish.name} />
+        <CardImg top src={baseUrl + dish.image} alt={dish.name} />
+        {/* <CardImg width="100%" src={dish.image} alt={dish.name} /> */}
         <CardBody>
           <CardTitle>{dish.name}</CardTitle>
           <CardText>{dish.description}</CardText>

@@ -4,6 +4,7 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 function RenderMenuItem({ dish, isLoading, errMess }) {
     if (isLoading) {
         return (
@@ -19,8 +20,7 @@ function RenderMenuItem({ dish, isLoading, errMess }) {
         return (
             <Card>
                 <Link to={`/menu/${dish.id}`} >
-                    <CardImg width="100%" src={dish.image} alt={dish.name} />
-                    <CardImgOverlay>
+                    <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />                    <CardImgOverlay>
                         <CardTitle>{dish.name}</CardTitle>
                     </CardImgOverlay>
                 </Link>
@@ -33,7 +33,7 @@ const Menu = (props) => {
     const menu = props.dishes.dishes.map((dish) => {
         return (
             <div className="col-12 col-md-3" key={dish.id}>
-                <RenderMenuItem dish={dish} isLoading={props.dishesLoading} errMess={props.dishesErrMess}   />
+                <RenderMenuItem dish={dish} isLoading={props.dishesLoading} errMess={props.dishesErrMess} />
             </div>
         );
     });
