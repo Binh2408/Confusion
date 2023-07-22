@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import store from "../shared/store"
 import { actions } from 'react-redux-form';
 import { postComment, fetchDishes, fetchComments, fetchPromos, addComment } from '../redux/ActionCreators';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const mapDispatchToProps = (dispatch) => ({
   addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
@@ -82,16 +83,18 @@ class Main extends Component {
 
     return (
       <div>
+
+
         <Header />
         {/* <Provider store={store}>
         <Counter />
          </Provider>  */}
-        <Routes>
+        <Routes >
+
           <Route path='/home' Component={HomePage} />
           <Route exact path='/contactus' Component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
           <Route exact path='/menu' Component={() => <Menu dishes={this.props.dishes} />} />
           <Route path='/menu/:dishId' Component={DishWithId} />
-
         </Routes>
 
 
@@ -99,6 +102,8 @@ class Main extends Component {
 
 
         <Footer />
+
+
       </div>
     );
   }
