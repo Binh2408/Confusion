@@ -12,14 +12,31 @@ export const addComment = (dishId, rating, author, comment) => ({
 });
 export const fetchDishes = () => (dispatch) => {
 
-    // dispatch(dishesLoading(true));
+    dispatch(dishesLoading(true));
+    return fetch(baseUrl + 'dishes')
+        .then(response => {
+            if (response.ok) {
+                return response;
+            } else {
+                var error = new Error('Error ' + response.status + ': ' + response.statusText);
+                error.response = response;
+                throw error;
+            }
+        },
+            error => {
+                var errmess = new Error(error.message);
+                throw errmess;
+            })
+        .then(response => response.json())
+        .then(dishes => dispatch(addDishes(dishes)))
+        .catch(error => dispatch(dishesFailed(error.message)));
 
     // setTimeout(() => {
     //     dispatch(addDishes(DISHES));
     // }, 2000);
-    return fetch(baseUrl + 'dishes')
-    .then(response => response.json())
-    .then(dishes => dispatch(addDishes(dishes)));
+    // return fetch(baseUrl + 'dishes')
+    // .then(response => response.json())
+    // .then(dishes => dispatch(addDishes(dishes)));
 
 }
 
@@ -37,10 +54,28 @@ export const addDishes = (dishes) => ({
     payload: dishes
 });
 
-export const fetchComments = () => (dispatch) => {    
+export const fetchComments = () => (dispatch) => {
+    // return fetch(baseUrl + 'comments')
+    //     .then(response => response.json())
+    //     .then(comments => dispatch(addComments(comments)));
     return fetch(baseUrl + 'comments')
-    .then(response => response.json())
-    .then(comments => dispatch(addComments(comments)));
+        .then(response => {
+            if (response.ok) {
+                return response;
+            } else {
+                var error = new Error('Error ' + response.status + ': ' + response.statusText);
+                error.response = response;
+                throw error;
+            }
+        },
+            error => {
+                var errmess = new Error(error.message);
+                throw errmess;
+            })
+        .then(response => response.json())
+        .then(comments => dispatch(addComments(comments)))
+        .catch(error => dispatch(commentsFailed(error.message)));
+
 };
 
 export const commentsFailed = (errmess) => ({
@@ -54,12 +89,29 @@ export const addComments = (comments) => ({
 });
 
 export const fetchPromos = () => (dispatch) => {
-    
-    dispatch(promosLoading());
 
+    dispatch(promosLoading());
     return fetch(baseUrl + 'promotions')
-    .then(response => response.json())
-    .then(promos => dispatch(addPromos(promos)));
+        .then(response => {
+            if (response.ok) {
+                return response;
+            } else {
+                var error = new Error('Error ' + response.status + ': ' + response.statusText);
+                error.response = response;
+                throw error;
+            }
+        },
+            error => {
+                var errmess = new Error(error.message);
+                throw errmess;
+            })
+        .then(response => response.json())
+        .then(promos => dispatch(addPromos(promos)))
+        .catch(error => dispatch(promosFailed(error.message)));
+
+    // return fetch(baseUrl + 'promotions')
+    //     .then(response => response.json())
+    //     .then(promos => dispatch(addPromos(promos)));
 }
 
 export const promosLoading = () => ({
